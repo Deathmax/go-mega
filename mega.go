@@ -892,7 +892,7 @@ func (m *Mega) UploadFile(srcpath string, parent *Node, name string, progress *c
 				ctr_iv[3] = uint32(chk_start / 0x10)
 				ctr_aes := cipher.NewCTR(aes_block, a32_to_bytes(ctr_iv))
 
-				chunk := make([]byte, chk_size)
+				chunk := make([]byte, chk_size, chk_size*2)
 				n, _ := infile.ReadAt(chunk, int64(chk_start))
 				chunk = chunk[:n]
 
